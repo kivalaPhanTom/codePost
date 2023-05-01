@@ -10,7 +10,23 @@ class ProgramingLanguageController extends Controller
 {
     public function handleCreate(Request $request)
     {
-        $ln = ProgramingLanguageModel::saveData($request);
-        return response()->json($ln);
+        try {
+            //code...
+            $ln = ProgramingLanguageModel::saveData($request);
+            return response()->json($ln);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+       
+    }
+    public function handleDelete($id)
+    {
+        try {
+            //code...
+            ProgramingLanguageModel::deleteData($id);
+            return response()->json("thành công");
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 }

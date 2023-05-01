@@ -27,4 +27,9 @@ class ProgramingLanguageModel extends Model
         $result->save();
         return $result;
     }
+    public function deleteData($data)
+    {
+        self::destroy($data);
+        return $result;
+    }
 }

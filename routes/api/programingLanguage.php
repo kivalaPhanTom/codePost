@@ -7,6 +7,7 @@ Route::group([
     'prefix' => 'programmingLanguage',
 ], function ($router) {
     Route::post('/create', [ProgramingLanguageController::class, 'handleCreate']);
+    Route::post('/delete/{id}', [ProgramingLanguageController::class, 'handleDelete']);
 });
 
 
