@@ -1,10 +1,9 @@
 <?php
 
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Support\Facades\Log;
 
 class ProgramingLanguageModel extends Model
 {
@@ -31,5 +30,19 @@ class ProgramingLanguageModel extends Model
     {
         self::destroy($data);
         return $result;
+    }
+    public function findDetailData($data)
+    {
+        $result = self::find($data);
+        return $result;
+    }
+    public function editData($data)
+    {
+        $detail = self::find($data->id);
+        $detail->name = $data->name;
+        $detail->img = $data->img;
+        $detail->updated_at = now();
+        $detail->save();
+        return $detail;
     }
 }

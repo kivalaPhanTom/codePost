@@ -8,6 +8,8 @@ Route::group([
 ], function ($router) {
     Route::post('/create', [ProgramingLanguageController::class, 'handleCreate']);
     Route::post('/delete/{id}', [ProgramingLanguageController::class, 'handleDelete']);
+    Route::get('/detail/{id}', [ProgramingLanguageController::class, 'handleGetDetail']);
+    Route::post('/edit', [ProgramingLanguageController::class, 'handleEditData']);
 });
 
 
