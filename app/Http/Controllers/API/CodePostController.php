@@ -1,25 +1,25 @@
 <?php
+
 namespace App\Http\Controllers\API;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\ProgramingLanguageModel;
-use Illuminate\Support\Facades\Log;
+use App\Models\CodePost;
 
-class ProgramingLanguageController extends Controller
+class CodePostController extends Controller
 {
     public function handleCreate(Request $request)
     {
         try {
-            $ln = ProgramingLanguageModel::saveData($request);
-            return response()->json($ln);
+            $codePostItem = CodePost::saveData($request);
+            return response()->json($codePostItem);
         } catch (\Throwable $th) {
         }
-       
     }
     public function handleDelete($id)
     {
         try {
-            ProgramingLanguageModel::deleteData($id);
+            CodePost::deleteData($id);
             return response()->json("thành công");
         } catch (\Throwable $th) {
         }
@@ -27,7 +27,7 @@ class ProgramingLanguageController extends Controller
     public function handleGetDetail($id)
     {
         try {
-            $data = ProgramingLanguageModel::findDetailData($id);
+            $data = CodePost::findDetailData($id);
             return response()->json($data);
         } catch (\Throwable $th) {
         }
@@ -35,7 +35,7 @@ class ProgramingLanguageController extends Controller
     public function handleEditData(Request $request)
     {
         try {
-            $data = ProgramingLanguageModel::editData($request);
+            $data = CodePost::editData($request);
             return response()->json($data);
         } catch (\Throwable $th) {
         }
