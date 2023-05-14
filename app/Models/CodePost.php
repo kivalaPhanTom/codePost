@@ -40,4 +40,5 @@ class CodePost extends Model
         $detail->save();
         return $detail;
     }
+   
 }

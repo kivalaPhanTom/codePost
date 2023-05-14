@@ -40,4 +40,29 @@ class ProgramingLanguageController extends Controller
         } catch (\Throwable $th) {
         }
     }
+    public function handleGetList(Request $request){
+        $keyword = $request->keyword;
+        $pageSize = $request->pageSize;
+        $pageIndex = $request->pageIndex;
+        try {
+            $result = null;
+            if(trim($keyword) === ''){
+                $result = ProgramingLanguageModel::getListWithoutKeySearch($pageSize, $pageIndex);
+            }else{
+                $result = ProgramingLanguageModel::getListWithKeySearch($keyword, $pageSize, $pageIndex);
+            }
+            return response()->json([
+                "isError" => false,
+                "data" => $result
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                "isError" => true,
+                "data" => [],
+                "reason" => $th
+            ]);
+        }
+        
+    }
+    
 }

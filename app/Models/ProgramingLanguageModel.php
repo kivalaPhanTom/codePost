@@ -44,4 +44,24 @@ class ProgramingLanguageModel extends Model
         $detail->save();
         return $detail;
     }
+    public function getListWithoutKeySearch($pageSize, $pageIndex)
+    {  
+        $list = self::paginate(
+            $pageSize, // per page (may be get it from request)
+            ['*'], // columns to select from table (default *, means all fields)
+            'page', // page name that holds the page number in the query string
+            $pageIndex // current page, default 1
+        );
+        return $list;
+    }
+    public function getListWithKeySearch($keyword, $pageSize, $pageIndex)
+    {  
+        $list = self::where('name','like', '%' .$keyword. '%')->paginate(
+            $perPage = $pageSize, 
+            $columns = ['*'], 
+            $pageName = 'page', 
+            $currentPage = $pageIndex
+        );
+        return $list;
+    }
 }

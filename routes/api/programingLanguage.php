@@ -10,6 +10,7 @@ Route::group([
     Route::post('/delete/{id}', [ProgramingLanguageController::class, 'handleDelete']);
     Route::get('/detail/{id}', [ProgramingLanguageController::class, 'handleGetDetail']);
     Route::post('/edit', [ProgramingLanguageController::class, 'handleEditData']);
+    Route::post('/getList', [ProgramingLanguageController::class, 'handleGetList']);
 });
 
 
