@@ -11,33 +11,65 @@ class ProgramingLanguageController extends Controller
     {
         try {
             $ln = ProgramingLanguageModel::saveData($request);
-            return response()->json($ln);
+            return response()->json([
+                "isError" => false,
+                "data" => $ln ,
+                "reason" => $th
+            ]);
         } catch (\Throwable $th) {
+            return response()->json([
+                "isError" => true,
+                "data" => null,
+                "reason" => $th
+            ]);
         }
-       
     }
+
     public function handleDelete($id)
     {
         try {
             ProgramingLanguageModel::deleteData($id);
-            return response()->json("thành công");
+            return response()->json([
+                "isError" => false,
+                "data" => null ,
+                "reason" => $th
+            ]);
         } catch (\Throwable $th) {
         }
     }
+
     public function handleGetDetail($id)
     {
         try {
             $data = ProgramingLanguageModel::findDetailData($id);
-            return response()->json($data);
+            return response()->json([
+                "isError" => false,
+                "data" => $data,
+                "reason" => $th
+            ]);
         } catch (\Throwable $th) {
+            return response()->json([
+                "isError" => true,
+                "data" => null,
+                "reason" => $th
+            ]);
         }
     }
     public function handleEditData(Request $request)
     {
         try {
             $data = ProgramingLanguageModel::editData($request);
-            return response()->json($data);
+            return response()->json([
+                "isError" => false,
+                "data" => $data,
+                "reason" => $th
+            ]);
         } catch (\Throwable $th) {
+            return response()->json([
+                "isError" => true,
+                "data" => null,
+                "reason" => $th
+            ]);
         }
     }
     public function handleGetList(Request $request){
@@ -53,7 +85,8 @@ class ProgramingLanguageController extends Controller
             }
             return response()->json([
                 "isError" => false,
-                "data" => $result
+                "data" => $result,
+                "reason" => $th
             ]);
         } catch (\Throwable $th) {
             return response()->json([
