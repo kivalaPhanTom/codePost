@@ -14,13 +14,13 @@ class ProgramingLanguageController extends Controller
             return response()->json([
                 "isError" => false,
                 "data" => $ln ,
-                "reason" => $th
+                "reason" => ''
             ]);
-        } catch (\Throwable $th) {
+        } catch (\Exception $e) {
             return response()->json([
                 "isError" => true,
                 "data" => null,
-                "reason" => $th
+                "reason" => $e
             ]);
         }
     }
@@ -34,8 +34,14 @@ class ProgramingLanguageController extends Controller
                 "data" => null ,
                 "reason" => $th
             ]);
-        } catch (\Throwable $th) {
+        } catch (\Exception $e) {
+            return response()->json([
+                "isError" => true,
+                "data" => null,
+                "reason" => $e
+            ]);
         }
+
     }
 
     public function handleGetDetail($id)
@@ -45,13 +51,13 @@ class ProgramingLanguageController extends Controller
             return response()->json([
                 "isError" => false,
                 "data" => $data,
-                "reason" => $th
+                "reason" => ''
             ]);
-        } catch (\Throwable $th) {
+        } catch (\Exception $e) {
             return response()->json([
                 "isError" => true,
                 "data" => null,
-                "reason" => $th
+                "reason" => $e
             ]);
         }
     }
@@ -62,13 +68,13 @@ class ProgramingLanguageController extends Controller
             return response()->json([
                 "isError" => false,
                 "data" => $data,
-                "reason" => $th
+                "reason" => ''
             ]);
-        } catch (\Throwable $th) {
+        } catch (\Exception $e) {
             return response()->json([
                 "isError" => true,
                 "data" => null,
-                "reason" => $th
+                "reason" => $e
             ]);
         }
     }
@@ -77,22 +83,23 @@ class ProgramingLanguageController extends Controller
         $pageSize = $request->pageSize;
         $pageIndex = $request->pageIndex;
         try {
-            $result = null;
-            if(trim($keyword) === ''){
+            $result = [];
+            if(trim($keyword) == ''){
                 $result = ProgramingLanguageModel::getListWithoutKeySearch($pageSize, $pageIndex);
+                Log::info($result);
             }else{
                 $result = ProgramingLanguageModel::getListWithKeySearch($keyword, $pageSize, $pageIndex);
             }
             return response()->json([
                 "isError" => false,
                 "data" => $result,
-                "reason" => $th
+                "reason" => ''
             ]);
-        } catch (\Throwable $th) {
+        } catch (\Exception $e) {
             return response()->json([
                 "isError" => true,
                 "data" => [],
-                "reason" => $th
+                "reason" => $e
             ]);
         }
         
