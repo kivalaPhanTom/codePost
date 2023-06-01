@@ -32,7 +32,7 @@ class ProgramingLanguageController extends Controller
             return response()->json([
                 "isError" => false,
                 "data" => null ,
-                "reason" => $th
+                "reason" => ''
             ]);
         } catch (\Exception $e) {
             return response()->json([
@@ -86,7 +86,6 @@ class ProgramingLanguageController extends Controller
             $result = [];
             if(trim($keyword) == ''){
                 $result = ProgramingLanguageModel::getListWithoutKeySearch($pageSize, $pageIndex);
-                Log::info($result);
             }else{
                 $result = ProgramingLanguageModel::getListWithKeySearch($keyword, $pageSize, $pageIndex);
             }
