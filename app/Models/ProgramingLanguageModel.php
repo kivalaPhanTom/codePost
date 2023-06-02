@@ -17,7 +17,7 @@ class ProgramingLanguageModel extends Model
     ];
     public $timestamps = false;
 
-    public function saveData($data)
+    public static function saveData($data)
     {
         $result = new ProgramingLanguageModel();
         $result->name = $data->name;
@@ -26,16 +26,16 @@ class ProgramingLanguageModel extends Model
         $result->save();
         return $result;
     }
-    public function deleteData($data)
+    public static function deleteData($data)
     {
         self::destroy($data);
     }
-    public function findDetailData($data)
+    public static function findDetailData($data)
     {
         $result = self::find($data);
         return $result;
     }
-    public function editData($data)
+    public static function editData($data)
     {
         $detail = self::find($data->id);
         $detail->name = $data->name;
@@ -44,7 +44,7 @@ class ProgramingLanguageModel extends Model
         $detail->save();
         return $detail;
     }
-    public function getListWithoutKeySearch($pageSize, $pageIndex)
+    public static function getListWithoutKeySearch($pageSize, $pageIndex)
     {  
         $list = self::paginate(
             $pageSize, // per page (may be get it from request)
@@ -54,7 +54,7 @@ class ProgramingLanguageModel extends Model
         );
         return $list;
     }
-    public function getListWithKeySearch($keyword, $pageSize, $pageIndex)
+    public static function getListWithKeySearch($keyword, $pageSize, $pageIndex)
     {  
         $list = self::where('name','like', '%' .$keyword. '%')->paginate(
             $perPage = $pageSize, 
@@ -62,6 +62,11 @@ class ProgramingLanguageModel extends Model
             $pageName = 'page', 
             $currentPage = $pageIndex
         );
+        return $list;
+    }
+    public static function getAllData()
+    {  
+        $list = self::all();
         return $list;
     }
 }

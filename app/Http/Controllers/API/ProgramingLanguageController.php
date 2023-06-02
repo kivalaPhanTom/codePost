@@ -101,7 +101,23 @@ class ProgramingLanguageController extends Controller
                 "reason" => $e
             ]);
         }
-        
+    }
+    public function handleGetAllList(Request $request){
+        try {
+            $result = [];
+            $result = ProgramingLanguageModel::getAllData();
+            return response()->json([
+                "isError" => false,
+                "data" => $result,
+                "reason" => ''
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                "isError" => true,
+                "data" => [],
+                "reason" => $e
+            ]);
+        }
     }
     
 }

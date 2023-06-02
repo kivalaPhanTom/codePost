@@ -11,6 +11,7 @@ Route::group([
     Route::get('/detail/{id}', [ProgramingLanguageController::class, 'handleGetDetail']);
     Route::post('/edit', [ProgramingLanguageController::class, 'handleEditData']);
     Route::post('/getList', [ProgramingLanguageController::class, 'handleGetList']);
+    Route::post('/getAllList', [ProgramingLanguageController::class, 'handleGetAllList']);
 });
 
 
