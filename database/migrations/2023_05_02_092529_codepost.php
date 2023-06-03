@@ -16,7 +16,7 @@ class Codepost extends Migration
         Schema::create('codepost', function (Blueprint $table) {
             $table->increments("id");
             $table->string('title');
-            $table->string('code');
+            $table->string('code', 9000);
             $table->integer('programLangId')->unsigned();
             $table-> foreign("programLangId")->references("id")->on("programing_language")->onDelete("cascade");
             $table->nullableTimestamps();

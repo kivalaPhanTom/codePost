@@ -16,7 +16,7 @@ class ProgramingLanguage extends Migration
         Schema::create('programing_language', function (Blueprint $table) {
             $table->increments("id");
             $table->string('name');
-            $table->string('img');
+            $table->string('img',9000);
             $table->nullableTimestamps();
         });
     }
