@@ -10,7 +10,7 @@ Route::group([
     Route::post('/delete/{id}', [CodePostController::class, 'handleDelete']);
     Route::get('/detail/{id}', [CodePostController::class, 'handleGetDetail']);
     Route::post('/edit', [CodePostController::class, 'handleEditData']);
-    Route::post('/getList', [CodePostController::class, 'handleGetList']);
+    Route::post('/getLisCodePost', [CodePostController::class, 'handleGetList']);
 });
 
 
